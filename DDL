@@ -1,17 +1,31 @@
-CREATE DATABASE IF NOT EXISTS schoolDB;
+-- Step 1: Create a new database
+CREATE DATABASE schoolDB;
+
+-- Step 2: Use the database
 USE schoolDB;
 
-CREATE TABLE IF NOT EXISTS students (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(50) NOT NULL,
-  age INT,
-  grade VARCHAR(10)
+-- Step 3: Create a 'students' table
+CREATE TABLE students (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    age INT,
+    grade VARCHAR(10)
 );
 
-INSERT INTO students (name, age, grade) VALUES
-('John Doe', 15, 'A'),
-('Sara Lee', 14, 'B'),
-('Mike Ross', 16, 'A'),
-('Emma Stone', 15, 'C');
+-- Step 4: Create a 'teachers' table
+CREATE TABLE teachers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    subject VARCHAR(50),
+    email VARCHAR(100)
+);
 
-SELECT * FROM students;
+-- Step 5: Create a 'courses' table
+CREATE TABLE courses (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    course_name VARCHAR(100),
+    teacher_id INT,
+    FOREIGN KEY (teacher_id) REFERENCES teachers(id)
+);
+
+
