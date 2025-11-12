@@ -1,0 +1,17 @@
+CREATE DATABASE IF NOT EXISTS schoolDB;
+USE schoolDB;
+
+CREATE TABLE IF NOT EXISTS students (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(50) NOT NULL,
+  age INT,
+  grade VARCHAR(10)
+);
+
+INSERT INTO students (name, age, grade) VALUES
+('John Doe', 15, 'A'),
+('Sara Lee', 14, 'B'),
+('Mike Ross', 16, 'A'),
+('Emma Stone', 15, 'C');
+
+SELECT * FROM students;
