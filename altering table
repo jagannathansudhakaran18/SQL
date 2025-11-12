@@ -1,0 +1,16 @@
+create database productsDB;
+use productsDB;
+show databases;
+create table produts(
+product_id int primary key,
+produt_name varchar(45),
+product_price varchar(35),
+date_expire date
+);
+desc produts;
+alter table produts add stock int;
+desc produts;
+alter table produts rename products_1;
+desc products_1;
+alter table products_1 drop column product_price  ;
+desc products_1;
