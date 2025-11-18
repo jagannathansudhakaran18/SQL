@@ -1,0 +1,32 @@
+-- 1. Create products table
+CREATE TABLE products (
+    id INT,
+    name VARCHAR(100),
+    price INT
+);
+
+-- 2. Add a new column stock
+ALTER TABLE products
+ADD stock INT;
+
+-- 3. Rename price → unit_price
+ALTER TABLE products
+CHANGE price unit_price INT;
+
+-- 4. Insert 5 products
+INSERT INTO products (id, name, unit_price, stock)
+VALUES
+(1, 'Laptop', 55000, 10),
+(2, 'Smartphone', 30000, 25),
+(3, 'Headphones', 2000, 50),
+(4, 'Keyboard', 1200, 40),
+(5, 'Monitor', 8000, 15);
+
+-- 5. Update stock of one product
+UPDATE products
+SET stock = 20
+WHERE id = 1;
+
+-- 6. Delete one product
+DELETE FROM products
+WHERE id = 3;
