@@ -1,0 +1,45 @@
+
+FROM employees
+WHERE salary > (
+    SELECT AVG(salary) FROM employees
+);
+
+-- (compare product unit_price vs. minimum order amount)
+SELECT *FROM products
+WHERE unit_price > (
+    SELECT MIN(amount) FROM orders
+);
+
+-- Use a subquery inside WHERE to fetch customers who have placed orders
+SELECT *
+FROM customers
+WHERE customer_id IN (
+    SELECT DISTINCT customer_id
+    FROM orders
+    WHERE customer_id IS NOT NULL
+);
+
+-- Use a subquery inside SELECT to show order counts per customer
+SELECT
+    c.customer_id,
+    c.customer_name,
+    (
+        SELECT COUNT(*)
+        FROM orders o
+        WHERE o.customer_id = c.customer_id
+    ) AS order_count
+FROM customers c;
+
+--  Use a subquery to check if a product exists (example: product name = 'Laptop')
+SELECT EXISTS (
+    SELECT 1
+    FROM products
+    WHERE name = 'Laptop'
+) AS laptop_exists;
+
+--  conditional text using CASE (returns 'Yes' or 'No')
+SELECT
+    CASE
+        WHEN EXISTS (SELECT 1 FROM products WHERE name = 'Laptop') THEN 'Yes'
+        ELSE 'No'
+    END AS laptop_exists;
