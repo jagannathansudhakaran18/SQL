@@ -1,0 +1,48 @@
+
+--  CREATE A VIEW (Non-Updatable View with JOIN)
+
+CREATE VIEW customer_orders AS
+SELECT 
+    c.customer_id,
+    c.customer_name,
+    c.email,
+    o.product_name,
+    o.amount
+FROM customers c
+JOIN orders o
+ON c.customer_id = o.customer_id;
+
+-- USE THE VIEW (Select from the view)
+
+SELECT * FROM customer_orders;
+
+-- CREATE AN UPDATABLE VIEW (Single-table View)
+
+CREATE VIEW customer_basic AS
+SELECT 
+    customer_id, 
+    customer_name, 
+    email
+FROM customers;
+
+-- UPDATE DATA THROUGH UPDATABLE VIEW
+
+UPDATE customer_basic
+SET customer_name = 'Rahul Kumar'
+WHERE customer_id = 1;
+
+-- INSERT THROUGH UPDATABLE VIEW
+
+INSERT INTO customer_basic (customer_id, customer_name, email)
+VALUES (6, 'Meera Raj', 'meera@gmail.com');
+
+-- DELETE THROUGH UPDATABLE VIEW
+
+DELETE FROM customer_basic
+WHERE customer_id = 2;
+
+
+-- SELECT TO CHECK FINAL RESULT
+
+SELECT * FROM customer_basic;
+SELECT * FROM customers;
